@@ -1,0 +1,1 @@
+<?php echo $form->hidden("User.id", array("value" => 100));?>
