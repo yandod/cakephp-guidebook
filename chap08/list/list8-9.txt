@@ -1,0 +1,16 @@
+<p>
+
+<style type="text/css">
+table tr td {
+background-color: transparent
+}
+</style>
+<table>
+<tr><th>id</th> <th>名前</th> <th>性別</th></tr>
+
+<tr style="background-color:#DDDDDD"><td>1</td> <td>山田</td> <td>男</td></tr>
+<tr style="background-color:#FFFFFF"><td>10</td> <td>佐藤</td> <td>女</td></tr>
+<tr style="background-color:#DDDDDD"><td>22</td> <td>加藤</td> <td>男</td></tr>
+<tr style="background-color:#FFFFFF"><td>24</td> <td>手塚</td> <td>男</td></tr>
+</table>
+</p>

@@ -1,0 +1,24 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+    var $scaffold;       //scaffoldを使用
+    var $needAuth = true; //認証を必須とする
+
+    function index()
+    {
+        //セッションからログイン中のユーザーIDを取得
+        $auth = $this->Session->read("auth");
+        $param = array(
+		  'conditions' => array(
+		  'user_id' => $auth['id']
+		  )
+		);
+
+        //データの取得
+        $data = $this->Bookmark->find('all',$param);
+        $this->set("data",$data);
+
+    }
+}
+?>

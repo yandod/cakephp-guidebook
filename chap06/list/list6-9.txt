@@ -1,0 +1,32 @@
+<?php
+class UsersController extends AppController
+{
+
+    function setid($id)
+    {
+        $this->Session->write("id",$id); //URLから受け取ったidをセッションにセット
+        $this->flash("情報を表示する","/users/showinfo");
+    }
+
+    function showinfo()
+    {
+        //セッション内の値の取得
+        $id = $this->Session->read("id"); //セッション内のidを取得
+
+        //条件を元にモデルの機能でデータを1件取得する
+        $param = array('conditions' => array('id =' => $id));
+        $data = $this->User->find('first',$param);
+
+        //データが取得できなかった場合はエラーログを出力し、元の画面へ
+        if ( $data === false ) {
+            $this->log("該当データ無し user.id:{$id}",LOG_ERROR);
+            $this->flash("データが見つかりません","/users/index");
+            return;
+        }
+
+        //データが取得できた場合のメッセージ
+        $this->flash("ようこそ、{$data['User']['name']}さん","/users/index");
+    }
+
+}
+?>

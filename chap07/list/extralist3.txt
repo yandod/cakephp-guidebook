@@ -1,0 +1,13 @@
+CREATE TABLE `profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `job` text NOT NULL,
+  `hobby` text NOT NULL,
+  `favorite` text NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `profiles` (`id`, `user_id`, `job`, `hobby`, `favorite`, `created`, `modified`) VALUES
+(1, 1, 'PHPを使った開発のお仕事をしております。', '猫と遊ぶのが趣味でございます。', '映画「猫の惑星」がお気に入りです。', '2009-05-01 21:18:28', '2009-05-01 21:18:28');

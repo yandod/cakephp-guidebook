@@ -1,0 +1,26 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function regist()
+    {
+
+        //対象とするレコードのIDを指定
+        $this->Bookmark->id = 1;
+
+        //該当レコードのデータを更新
+        $result = $this->Bookmark->saveField("url","http://cakephp.jp");
+
+        //登録に成功していればメッセージを表示
+        if ($result) {
+            $this->Session->setFlash('登録に成功しました');
+        }
+
+        $this->set("data",array());
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

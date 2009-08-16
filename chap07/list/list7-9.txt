@@ -1,0 +1,29 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+
+        //文字列で組み立てた条件、項目を直接指定する
+        $params =  array(
+            'conditions' => "Bookmark.created >= '2007-01-01' GROUP BY Bookmark.user_id",
+            'fields' => 
+              "Bookmark.id,Bookmark.url,Bookmark.created,".
+              "COUNT(Bookmark.user_id) as cnt,".
+              "AVG(Bookmark.user_id) as avg,".
+              "SUM(Bookmark.user_id) as sum"
+        );
+
+        //データの取得
+        $data = $this->Bookmark->find('all',$params);
+        $this->set("data",$data);
+        //集計結果をメッセージ表示領域へ格納
+        $this->Session->setFlash(var_export($data[0][0],true));
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

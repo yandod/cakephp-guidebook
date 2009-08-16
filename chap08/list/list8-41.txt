@@ -1,0 +1,68 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+    var $scaffold;       //scaffoldを使用
+    var $needAuth = true; //認証を必須とする
+    var $uses = array('Bookmark','User');
+
+    function index(){} //省略
+    function add(){} //省略
+    function search(){} //省略
+    {
+
+        //ユーザーのリストを取得
+        $user_list = $this->User->find('list');
+        $this->set("user_list", $user_list);
+
+        //その他の初期化
+        //$this->set("url","");
+        //$this->set("user_id",array());
+        //$this->set("count","");
+        //$this->set("created","");
+
+        //検索ボタンを押されていない場合
+        if ( empty($this->data) ) {
+            $this->set("bookmark_list", array());
+            return;
+        }
+
+        //条件指定用の配列を初期化
+        $cond = array();
+
+        //URLはLIKEで検索
+        if ( !empty($this->data['Bookmark']['url']) ) {
+            $cond['url LIKE'] = "%".$this->data['Bookmark']['url']."%";
+            //$this->set("url", $this->params['form']['url']);
+        }
+
+        //登録者は複数指定(IN)で検索
+        if ( !empty($this->data['Bookmark']['user_id']) ) {
+            $cond['user_id'] = $this->data['Bookmark']['user_id'];
+            //$this->set("user_id", $this->params['form']['user_id']);
+        }
+
+        //カウントは範囲検索
+        if ( !empty($this->data['Bookmark']['count']) ) {
+            $cond['count >='] = $this->data['Bookmark']['count'];
+            //$this->set("count", $this->params['form']['count']);
+        }
+
+        //日付は範囲検索
+        if ( !empty($this->data['Bookmark']['created']) ) {
+            $cond['Bookmark.created >='] = $this->data['Bookmark']['created'];
+            //$this->set("created", $this->params['form']['created']);
+        }
+
+        //検索 (カウント数の降順でソート)
+        $params = array(
+            'conditions' => $cond,
+            'order' => 'count DESC'
+        );
+        $bookmark_list = $this->Bookmark->find('all',$params);
+        $this->set("bookmark_list",$bookmark_list);
+        return;
+    }
+    function trans($id){} //省略
+}
+?>

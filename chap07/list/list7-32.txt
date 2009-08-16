@@ -1,0 +1,54 @@
+<?php echo $html->link("ブックマークを追加","/bookmarks/add");?>
+ 
+<?php echo $html->link("自分のブックマークを一覧","/bookmarks/");?>
+<br/>
+<br/>
+<form action="<?php echo $html->url('/bookmarks/search'); ?>" method="POST">
+<table style="width:450px">
+  <tr>
+    <th>URL</th>
+    <td><input type="text" name="url" value="<?php echo h($url);?>">を含む</td>
+  </tr>
+  <tr>
+    <th>登録者</th>
+    <td align="left"><select name="user_id[]" multiple>
+<?php foreach ($user_list as $key => $val): ?>
+<option value="<?php echo $key;?>" <?php if (in_array($key,$user_id)) echo "selected";?>><?php echo h($val);?></option>
+<?php endforeach; ?>
+    </select></td>
+  </tr>
+  <tr>
+    <th>カウント</th>
+    <td><input type="text" name="count" value="<?php echo h($count);?>">以上</td>
+  </tr>
+  <tr>
+    <th>登録日</th>
+    <td><input type="text" name="created" value="<?php echo h($created);?>">(Y-m-d)以降</td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="submit" name="submit" value="検索"></td>
+  </tr>
+</table>
+</form>
+<table>
+  <tr>
+    <th>id</th>
+    <th>URL</th>
+    <th>登録者</th>
+    <th>カウント</th>
+    <th>登録日時</th>
+  </tr>
+<?php
+foreach ($bookmark_list as $row):
+?>
+  <tr>
+    <td><?php echo h($row['Bookmark']['id']); ?></td>
+    <td><?php echo $html->link($row['Bookmark']['url'], "/bookmarks/trans/{$row['Bookmark']['id']}"); ?></td>
+    <td><?php echo h($row['User']['name']); ?></td>
+    <td><?php echo h($row['Bookmark']['count']); ?></td>
+    <td><?php echo h($row['Bookmark']['created']); ?></td>
+  </tr>
+<?php
+endforeach;
+?>
+</table>

@@ -1,0 +1,33 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function regist()
+    {
+
+        //登録するデータ配列
+        $data = array(
+            'Bookmark' => array(
+                'id' => null,                   // idに存在する値を指定せず新規登録
+                'url' => "http://www.php.net",
+                'user_id' => 1
+            )
+        );
+
+        //データを登録
+        $this->Bookmark->save($data);
+
+        //挿入したデータのIDを取得
+        $id = $this->Bookmark->getLastInsertID();
+
+        //挿入したデータを削除
+        $this->Bookmark->del($id,false);
+
+        //indexアクションと同じビューを利用
+        $data['Bookmark']['created'] = 'ダミー'; //警告対策
+        $this->set('data',array($data));
+        $this->render("index");
+    }
+}
+?>

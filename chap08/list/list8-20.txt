@@ -1,0 +1,1 @@
+<?php echo $form->checkbox("User.mail_flg");?>

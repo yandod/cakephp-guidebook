@@ -1,0 +1,12 @@
+<!-- input() はエラーを自動で表示する -->
+<div class="input text error">
+<label for="UserMail">Mail</label>
+<input name="data[User][mail]" type="text" maxlength="255" value="" id="UserMail" class="form-error" />
+<div class="error-message">メールアドレスが正しくありません</div>
+</div><br/>
+
+<!-- 自力でエラーを表示する -->
+パスワード
+<input type="password" name="data[User][password]" value="" id="UserPassword" class="form-error" />
+
+パスワードが正しくありません

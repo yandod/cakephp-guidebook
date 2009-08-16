@@ -1,0 +1,21 @@
+<p>
+<!-- 見づらいので整形しています-->
+<ul>
+  <li>北海道・東北</li>
+  <li>関東
+    <ul>
+      <li><a href="/sample/sample/tokyo">東京</a></li>
+      <li><a href="/sample/sample/kanagawa">神奈川</a></li>
+      <li><a href="/sample/sample/saitama">埼玉</a></li>
+      <li><a href="/sample/sample/chiba">千葉</a></li>
+      <li><a href="/sample/sample/ibaraghi">茨城</a></li>
+      <li><a href="/sample/sample/tochighi">栃木</a></li>
+      <li><a href="/sample/sample/gunnma">群馬</a></li>
+      <li><a href="/sample/sample/yamanashi">山梨</a></li>
+    </ul></li>
+  <li>中部</li>
+  <li>近畿</li>
+  <li>中国・四国</li>
+  <li>九州・沖縄</li>
+</ul>
+</p>

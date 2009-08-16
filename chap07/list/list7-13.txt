@@ -1,0 +1,23 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+
+        //find('list')はfieldで指定されたカラムを値にする
+        $params = array(
+            'fields' => array('Bookmark.url')
+        );
+
+        $list= $this->Bookmark->find('list',$params);
+
+        //ダミー
+        $this->set('data',array());
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

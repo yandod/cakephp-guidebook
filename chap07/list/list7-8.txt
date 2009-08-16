@@ -1,0 +1,31 @@
+﻿<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+        //取得カラム部分に集計関数を指定
+        //カラムと同様の指定で関数が実行できる事の確認
+        $params = array(
+            'fields' => array(
+            "Bookmark.id",
+            "Bookmark.url",
+            "Bookmark.created",
+            "COUNT(Bookmark.user_id) as cnt",
+            "AVG(Bookmark.user_id) as avg",
+            "SUM(Bookmark.user_id) as sum",
+            )
+        );
+
+        //データの取得
+        $data = $this->Bookmark->find('all',$params);
+        $this->set("data",$data);
+        //集計結果をメッセージ表示領域へ格納
+        $this->Session->setFlash(var_export($data[0][0],true));
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

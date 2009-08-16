@@ -1,0 +1,15 @@
+<?php
+class Bookmark extends AppModel
+{
+    var $name = "Bookmark";
+    var $hasAndBelongsToMany = array(
+        'Tag' => array(
+            'className'              => 'Tag',
+            'joinTable'              => 'bookmarks_tags',
+            'foreignKey'             => 'bookmark_id',
+            'associationForeignKey'  => 'tag_id',
+            'unique'                 => true,
+        )
+    );
+}
+?>

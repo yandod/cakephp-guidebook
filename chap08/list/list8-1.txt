@@ -1,0 +1,14 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+    var $scaffold;
+    var $helpers = array('Html','Form','Ajax','Javascript');
+
+    function index()
+    {
+        $data = $this->Bookmark->find('all');
+        $this->set("data", $data);
+    }
+}
+?>

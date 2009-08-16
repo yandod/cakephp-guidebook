@@ -1,0 +1,6 @@
+<!-- 見づらいので整形しています -->
+<form id="UserAddForm" enctype="multipart/form-data" method="post" action="/sample/users/add">
+<fieldset style="display:none;"><input type="hidden" name="_method" value="POST" /></fieldset>
+<input type="file" name="data[User][photo]" value="" id="UserPhoto" />
+<div class="submit"><input type="submit" value="送信" /></div>
+</form>

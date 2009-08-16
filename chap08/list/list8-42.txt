@@ -1,0 +1,32 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+    var $scaffold;       //scaffoldを使用
+    var $needAuth = true; //認証を必須とする
+    var $uses = array('Bookmark','User');
+    //Paginatorの設定を追加
+    var $helpers = array('Html','Form','Paginator');
+    var $paginate = array(
+        'limit' => 3,
+        'order' => 'Bookmark.created DESC'
+    );
+
+    function index()
+    {
+        //セッションからログイン中のユーザーIDを取得
+        $auth = $this->Session->read("auth");
+        $param = array(
+          'conditions' => array(
+          'user_id' => $auth['id']
+          )
+        );
+
+        //データの取得
+        //$data = $this->Bookmark->find('all',$param); //paginateを使うので不要
+        $data = $this->paginate('Bookmark',$param['conditions']);
+        $this->set("data",$data);
+
+    }
+//以下省略
+?>

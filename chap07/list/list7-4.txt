@@ -1,0 +1,14 @@
+<?php
+class DATABASE_CONFIG {
+
+	var $default = array(
+		'driver' => 'adodb',
+		'connect' => 'mysql',
+		'host' => 'localhost',
+		'login' => 'cakeuser',
+		'password' => 'cakepass',
+		'database' => 'tutorial',
+		'prefix' => '',
+	);
+}
+?>

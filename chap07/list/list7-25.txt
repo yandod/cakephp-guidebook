@@ -1,0 +1,32 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function add()
+    {
+
+        if(empty($this->data)) {
+            return;
+        }
+
+        //登録するデータ配列
+        $this->Bookmark->set($this->data);
+
+        //データを検査し、結果により分岐する。
+        if ( $this->Bookmark->validates() ) {
+
+            //検査に通過しているので検査なしで登録する
+            $this->Bookmark->save($this->data,false);
+            $this->flash("登録完了","/bookmarks");
+            return;
+
+        } else {
+
+            //検査に通過していないのでエラー画面へ
+            return;
+
+        }
+    }
+}
+?>

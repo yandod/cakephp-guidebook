@@ -1,0 +1,31 @@
+<?php
+class UsersController extends AppController
+{
+
+    function welcome()
+    {
+        //デバッグログの出力
+        $this->log("welcomeページへアクセス",LOG_DEBUG);
+        $this->flash("ようこそ","/users/index");
+    }
+
+    //URLの末尾からデータを取得する為の引数を設定
+    function showinfo($id)
+    {
+        //条件を元にモデルの機能でデータを1件取得する
+        $param = array('conditions' => array('id =' => $id));
+        $data = $this->User->find('first',$param);
+
+        //データが取得できなかった場合はエラーログを出力し、元の画面へ
+        if ( $data === false ) {
+            $this->log("該当データ無し user.id:{$id}",LOG_ERROR);
+            $this->flash("データが見つかりません","/users/index");
+            return;
+        }
+
+        //データが取得できた場合のメッセージ
+        $this->flash("ようこそ、{$data['User']['name']}さん","/users/index");
+    }
+
+}
+?>

@@ -1,0 +1,8 @@
+<p>
+<select name="data[User][mail_setting]" id="UserMailSetting">
+<option value=""></option>
+<option value="1">メールを受信しない</option>
+<option value="2" selected="selected">重要なメールのみ受信</option>
+<option value="3">全てのメールを受信</option>
+
+</select></p>

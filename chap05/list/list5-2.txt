@@ -1,0 +1,24 @@
+<?php
+class DATABASE_CONFIG {
+
+	var $default = array(
+		'driver' => 'mysql',    利用するDBOの指定
+		'persistent' => false,
+		'host' => 'localhost',  接続先データベースのホスト名
+		'login' => 'root',      データベースの接続ユーザ
+		'password' => '',       データベースの接続パスワード
+		'database' => 'sample', データベース名
+		'prefix' => '',       テーブル名の先頭に任意の文字をつける時に設定
+		'encoding' => 'utf8'  文字エンコーディングを指定する
+	);
+
+	var $test = array(
+		'driver' => 'mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'user',
+		'password' => 'password',
+		'database' => 'test_database_name',
+		'prefix' => '',
+	);
+}

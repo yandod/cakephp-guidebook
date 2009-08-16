@@ -1,0 +1,9 @@
+<script type="text/javascript" src="/sample/js/prototype.js"></script>
+<script type="text/javascript" src="/sample/js/scriptaculous.js"></script>
+<a href="#" id="link1256734624" onclick=" event.returnValue = false; return false;">ページ読み込み</a>
+<script type="text/javascript">
+//<![CDATA[
+Event.observe('link1256734624', 'click', function(event) { new Ajax.Updater('load_space','/sample/bookmarks', {asynchronous:true, evalScripts:true, requestHeaders:['X-Update', 'load_space']}) }, false);
+//]]>
+</script>
+<div id="load_space"></div>

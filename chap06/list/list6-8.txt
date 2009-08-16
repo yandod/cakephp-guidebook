@@ -1,0 +1,29 @@
+<?php
+class UsersController extends AppController
+{
+    function form()
+	{
+	  //form.ctpを表示するだけなので何もしない。
+	}
+    function showinfo()
+    {
+        //フォームに入力された内容の取得(ヘルパーを使わない場合)
+        $id = $this->params['form']['id']; //POSTされたidの内容を取得
+
+        //条件を元にモデルの機能でデータを1件取得する
+        $param = array('conditions' => array('id =' => $id));
+        $data = $this->User->find('first',$param);
+
+        //データが取得できなかった場合はエラーログを出力し、元の画面へ
+        if ( $data === false ) {
+            $this->log("該当データ無し user.id:{$id}",LOG_ERROR);
+            $this->flash("データが見つかりません","/users/index");
+            return;
+        }
+
+        //データが取得できた場合のメッセージ
+        $this->flash("ようこそ、{$data['User']['name']}さん","/users/index");
+    }
+
+}
+?>

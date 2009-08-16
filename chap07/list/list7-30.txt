@@ -1,0 +1,7 @@
+<?php echo $html->link("ブックマーク一覧","/bookmarks/");?>
+<form action="<?php echo $html->url("/bookmarks/add"); ?>" method="POST">
+登録するURLを入力してください<br/>
+<br/>
+<input type="text" name="url" size="40" value="<?php echo h($url);?>">
+<input type="submit" name="submit" value="登録">
+</form>

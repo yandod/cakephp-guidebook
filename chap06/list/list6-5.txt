@@ -1,0 +1,12 @@
+<?php
+class UsersController extends AppController
+{
+    var $scaffold;
+    var $name = "Users";
+    var $layout = "common";  // common.ctp をレイアウトに使用
+    var $components = array('Some'); // SomeComponentを使用
+    var $uses = array("User","Bookmark"); // User、Bookmarkのモデルを使用
+    var $helpers = array("Html","Form","Ajax"); //Html、Form、Ajaxのヘルパーを使用
+    var $pageTitle = "システム内のユーザ情報"; //任意のタイトルを設定
+}
+?>

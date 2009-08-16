@@ -1,0 +1,12 @@
+<p>
+<!-- 見づらいので整形しています -->
+<fieldset>
+<legend>Mail Cd</legend>
+<input type="radio" name="data[User][mail_cd]" id="UserMailCd1" value="1"  />
+<label for="UserMailCd1">メールを受信しない</label>
+<input type="radio" name="data[User][mail_cd]" id="UserMailCd2" value="2" checked="checked"  />
+<label for="UserMailCd2">重要なメールのみ受信</label>
+<input type="radio" name="data[User][mail_cd]" id="UserMailCd3" value="3"  />
+<label for="UserMailCd3">全てのメールを受信</label>
+</fieldset>
+</p>

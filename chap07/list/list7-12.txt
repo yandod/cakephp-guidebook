@@ -1,0 +1,35 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+
+        //中心にするデータのID
+        $id = 2;
+
+        //データの取得
+        $params = array(
+            'conditions' => array(
+                'Bookmark.id =' => $id
+            )
+        );
+        $one = $this->Bookmark->find('first',$params);
+        $data = array($one);
+        $this->set("data",$data);
+
+        $params = array(
+            'field' => 'Bookmark.id',
+            'value' => 2
+        );
+
+        //前後のレコードのIDを取得する。
+        $near = $this->Bookmark->find('neighbors',$params);
+        $this->set("near",$near);
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

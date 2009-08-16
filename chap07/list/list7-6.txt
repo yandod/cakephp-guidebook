@@ -1,0 +1,30 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+        //モデル名.カラム名でオプションを指定する
+        $params = array(
+          'conditions' => array("Bookmark.user_id" => 1, "Bookmark.created >=" => "2007-01-01"),
+          'fields' => array("Bookmark.id","Bookmark.url","Bookmark.created"),
+          'order' => array("Bookmark.id"=>"desc")
+        );
+
+        //カラム名だけで指定した例
+        //$params = array(
+        //  'conditions' => array("user_id" => 1, "created >=" => "2007-01-01"),
+        //  'fields' => array("id","url","created"),
+        //  'order' => array("id"=>"desc")
+        //);
+
+        //データの取得
+        $data = $this->Bookmark->find('all',$params);
+        $this->set("data",$data);
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

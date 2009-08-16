@@ -1,0 +1,1 @@
+<textarea name="data[User][profile]" id="UserProfile" >あいうえお</textarea>

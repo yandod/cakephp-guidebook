@@ -1,0 +1,39 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+
+    function regist()
+    {
+
+        //登録するデータ配列
+        $data = array(
+            'Bookmark' => array(
+                'id' => null,                   // idに存在する値を指定せず新規登録
+                'url' => "http://www.php.net",
+                'user_id' => 1,
+                'created' => 'クエリ内に現れない' //fieldListにないカラムを指定
+            )
+        );
+
+        //パラメータを配列で作成
+        $params = array(
+            'fieldList' => array('url','user_id')
+        );
+
+        //データを登録
+        $result = $this->Bookmark->save($data,$params);
+
+        //登録に成功していればメッセージを表示
+        if ($result) {
+            $this->Session->setFlash('登録に成功しました');
+        }
+
+        $this->set("data",array($data));
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

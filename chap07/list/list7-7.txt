@@ -1,0 +1,33 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+        $params = array(
+            'conditions' => array(
+            //下記の条件をANDで結合する。(ORの指定も可能)
+            'AND' => array(
+                //値が配列の場合はINとして展開
+                "Bookmark.user_id" => array(1,2,3),
+
+                //LIKE NOT != などの任意の比較演算子の使用
+                "Bookmark.url LIKE" => "%cake%",
+
+                //同一カラムへの条件の場合は配列でラップ
+                array("Bookmark.created >=" => "2009-01-01"),
+                array("Bookmark.created <=" => "2009-05-01")
+            )
+            )
+        );
+
+        //データの取得
+        $data = $this->Bookmark->find('all',$params);
+        $this->set("data",$data);
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

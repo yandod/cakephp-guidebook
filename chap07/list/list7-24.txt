@@ -1,0 +1,39 @@
+<?php
+class User extends AppModel
+{
+    var $name = 'User';
+    var $validate = array(
+
+            //単純なルール指定のみ
+            'mail' => 'email',
+
+            //設定を追加したルール指定
+            'name' => array(
+                'rule' => array('maxLength',32),
+                'required' => true,    //入力を必須とする
+                'allowEmpty' => false, //空白を許可しない
+                'on' => 'create', //検証を登録時のみ実施する
+                'message' => '名前は全角16文字以内で入力してください' //エラー時のメッセージ
+            ),
+
+            //複数のルールを1つの項目に指定する
+            'password' => array(
+                //1つめのルール
+                'passtype' => array(
+                    'rule' => 'alphaNumeric',
+                    'required' => true,    //入力を必須とする
+                    'allowEmpty' => false, //空白を許可しない
+                    'message' => 'パスワードは英数字で入力してください' //エラー時のメッセージ
+                ),
+                //2つめのルール
+                'passlength' => array(
+                    'rule' => array('maxLength',8),
+                    'required' => true,    //入力を必須とする
+                    'allowEmpty' => false, //空白を許可しない
+                    'message' => 'パスワードは8文字以内で入力してください' //エラー時のメッセージ
+                ),
+            )
+        );
+    
+}
+?>

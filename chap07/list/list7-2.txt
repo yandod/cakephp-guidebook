@@ -1,0 +1,15 @@
+<?php
+class DboMysqlBase extends DboSource {
+
+	function setEncoding($enc) {
+		return $this->_execute('SET NAMES ' . $enc) != false;
+	}
+}
+
+class DboMysql extends DboMysqlBase {
+
+	function _execute($sql) {
+		return mysql_query($sql, $this->connection);
+	}
+}
+?>

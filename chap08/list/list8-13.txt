@@ -1,0 +1,6 @@
+<p>
+<form id="UserAddForm" method="post" action="/sample/users/add"><fieldset style="display:none;"><input type="hidden" name="_method" value="POST" /></fieldset>
+<!-- 標準の出力 -->
+<div class="input text"><label for="UserMail">Mail</label><input name="data[User][mail]" type="text" value="" id="UserMail" /></div>
+<!-- 関連する要素の出力をオフに -->
+<input name="data[User][mail]" type="text" value="" id="UserMail" /></p>

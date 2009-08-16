@@ -1,0 +1,16 @@
+<?php
+class User extends AppModel
+{
+    var $name = 'User';
+    var $hasMany = array(
+        'Bookmark' => array(
+            'className' => 'Bookmark',    //クラス名
+            'conditions' => '',              //抽出条件
+            'order' => 'Bookmark.created DESC', //登録日が新しいものから取得する
+            'limit' => '3',                  //2件までをUserと同時に取得する
+            'foreignKey' => 'user_id',       //Bookmark.user_idとこのモデルのidを条件に結合
+            'dependent' => true,
+            )
+        );
+}
+?>

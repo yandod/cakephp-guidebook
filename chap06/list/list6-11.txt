@@ -1,0 +1,14 @@
+class DATABASE_CONFIG {
+
+	var $default = array(
+		'driver' => 'mysql',
+		'persistent' => false,
+		'host' => 'localhost', //データベースのホスト名
+		'login' => 'cakeuser', //データベースの接続ユーザ名
+		'password' => 'cakepass', //データベースのパスワード
+		'database' => 'tutorial', //データベース名
+		'prefix' => '',
+		'encoding' => 'utf8' //データベースの文字エンコーディング
+	);
+}
+?>

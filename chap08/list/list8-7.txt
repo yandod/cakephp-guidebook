@@ -1,0 +1,12 @@
+<p>
+<!-- 画像の表示 -->
+<img src="/sample/img/cake.power.gif" alt="ロゴ" border="0" /><br/>
+
+<!-- 新規ウインドウへのテキストリンク -->
+<a href="http://cakephp.jp/" target="blank">cakephp.jp</a><br/>
+
+<!-- 確認メッセージありのリンク -->
+<a href="http://cakephp.jp/" onclick="return confirm(&#039;外部サイトへ移動します&#039;);">cakephp.jp</a><br/>
+
+<!-- 画像を利用したリンク -->
+<a href="http://cakephp.org"><img src="/sample/img/cake.power.gif" alt="" /></a></p>

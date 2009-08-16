@@ -1,0 +1,24 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+
+    function listall()
+    {
+
+        //条件にあてはまるデータの1件目を取得
+        $params = array(
+            'conditions' => array(
+                'Bookmark.created >=' => '2007-01-01')
+        );
+
+        //データの取得
+        $one = $this->Bookmark->find('first',$params);
+        $this->Session->setFlash(var_export($one,true));
+        $this->set("data",array()); //ダミーデータ
+
+        //indexアクションと同じviewを表示
+        $this->render("index");
+    }
+}
+?>

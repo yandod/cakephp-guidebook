@@ -1,0 +1,27 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+    var $scaffold;       //scaffoldを使用
+    var $needAuth = true; //認証を必須とする
+    var $uses = array('Bookmark','User');
+
+    function index() { //省略 }
+    function add() { //省略 }
+    function search() { //省略 }
+
+    function trans($id)
+    {
+
+        $this->Bookmark->id = $id;
+        $params = array(
+            'condtions' => array('id' => $id)
+        );
+        $data = $this->Bookmark->find('first',$params);
+        $this->Bookmark->saveField("count",$data['Bookmark']['count'] + 1);
+        $this->redirect($data['Bookmark']['url']);
+        return;
+    }
+
+}
+?>

@@ -1,0 +1,15 @@
+<?php
+class User extends AppModel
+{
+    var $name = 'User';
+    var $hasOne = array(
+        'Profile' => array(
+            'className' => 'Profile', //クラス名
+            // 古いデータは結合しない
+            'conditions' => "Profile.created > '2009-05-01 00:00:00'",
+            'dependent' => true,    //削除時に従属データを削除する
+            'foreignKey' => 'user_id' // Profile.user_idとこのクラスのidを条件に結合
+        )
+    );
+}
+?>

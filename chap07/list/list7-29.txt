@@ -1,0 +1,60 @@
+<?php
+class BookmarksController extends AppController
+{
+    var $name = "Bookmarks"; //PHP4の場合は必要な設定
+    var $scaffold;       //scaffoldを使用
+    var $needAuth = true; //認証を必須とする
+
+    function index()
+    {
+        //セッションからログイン中のユーザーIDを取得
+        $auth = $this->Session->read("auth");
+        $param = array(
+          'conditions' => array(
+          'user_id' => $auth['id']
+          )
+        );
+
+        //データの取得
+        $data = $this->Bookmark->find('all',$param);
+        $this->set("data",$data);
+
+    }
+
+    function add()
+    {
+        // submitされていない場合は初期表示
+        if (!isset($this->params['form']['submit'])) {
+            $this->set("url","");
+            return;
+        }
+
+        //セッションからログイン中のユーザーIDを取得
+        $auth = $this->Session->read("auth");
+
+        //入力データの形式を整える
+        $data = array(
+            'Bookmark' => array(
+                'user_id' => $auth['id'],
+                'url' => $this->params['form']['url'],
+                'count' => 0
+            )
+        );
+
+        //モデルにデータをセットする
+        $this->Bookmark->set($data);
+
+        //入力検査に失敗した場合は再度、入力画面へ
+        if ( !$this->Bookmark->validates($data) ) {
+            $this->set("url",$this->params['form']['url']);
+            $this->Session->setFlash('入力内容に不備があります');
+            return;
+        }
+
+        //登録処理
+        $this->Bookmark->save($data,false);    //検査済みなので検査はしない
+        $this->flash("ブックマークを登録しました","/bookmarks/");
+        return;
+    }
+}
+?>
