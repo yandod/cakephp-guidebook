@@ -1,0 +1,7 @@
+# mod_rewriteを読み込む
+LoadModule rewrite_module modules/mod_rewrite.so
+
+# .htaccessを有効にする
+<Directory /path/to/document_root>
+  AllowOverride All
+</Directory>

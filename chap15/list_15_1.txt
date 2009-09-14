@@ -1,0 +1,3 @@
+[/path/to/apache/conf/httpd.conf]
+<VirtualHost www.example.com>
+DocumentRoot /path/to/cakephp/app/webroot
